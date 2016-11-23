@@ -1,0 +1,27 @@
+{
+  "name": "pierophp/php-cs-fixer-extra",
+  "description": "PHP CS Fixer Extra",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Piero Giusti",
+      "email": "pierophp@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "PhpCsFixerExtra\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\": "tests/"
+    }
+  },
+  "require": {
+    "friendsofphp/php-cs-fixer": "^1.12"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~5.0"
+  }
+}
