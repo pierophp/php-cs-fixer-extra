@@ -88,7 +88,7 @@ class PhpdocFullNamespaceFixer extends AbstractFixer
      */
     private function parseLineWithUse(Line $line, $className, $content)
     {
-        preg_match_all('/use (.*)' . $className . ';/', $content, $matches, PREG_OFFSET_CAPTURE);
+        preg_match_all('/use (.*)\\' . $className . ';/', $content, $matches, PREG_OFFSET_CAPTURE);
         if (!isset($matches[0][0][0])) {
             return false;
         }

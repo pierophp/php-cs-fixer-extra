@@ -30,7 +30,7 @@ class Mock01
     /**
      * @param Mock02 $mock
      * @param string|\Tests\Mocks\Mock02 $test
-     * @return MockAlias
+     * @return MockAlias|mixed
      * @throws Mock02
      */
     public function getMyMock(Mock02 $mock, $test)
@@ -41,7 +41,10 @@ class Mock01
         return new MockAlias();
     }
 
-
-
-
+    /**
+     * @return mixed|null 
+     */
+    public function getMyMock2()
+    {
+    }
 }
