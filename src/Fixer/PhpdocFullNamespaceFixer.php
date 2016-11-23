@@ -47,7 +47,7 @@ class PhpdocFullNamespaceFixer extends AbstractFixer
 
                 $class = end($classParts);
 
-                if ($annotation->getTag()->getName() == 'param') {
+                if (substr($class, 0, 1) == '$') {
                     $classIndex = count($classParts) - 2;
                     if (isset($classParts[$classIndex])) {
                         $class = $classParts[$classIndex];
@@ -58,7 +58,7 @@ class PhpdocFullNamespaceFixer extends AbstractFixer
                     continue;
                 }
 
-                if ($class[0] == '\\') {
+                if (substr($class, 0, 1) == '\\') {
                     continue;
                 }
 

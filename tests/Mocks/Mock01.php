@@ -34,9 +34,9 @@ class Mock01
      */
     public function getMyMock(Mock02 $mock, $test)
     {
-        /** @var Collection $items */
+        /** @var Mock02 $items */
         $items = [];
-        
+
         return new MockAlias();
     }
 
