@@ -65,6 +65,8 @@ class PhpdocFullNamespaceFixer extends AbstractFixer
                         continue;
                     }
 
+                    $class = str_replace(['[', ']'], '', $class);
+
                     $wasParsed = $this->parseLineWithUse($line, $class, $content);
                     if ($wasParsed) {
                         continue;
