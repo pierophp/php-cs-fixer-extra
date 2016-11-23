@@ -30,7 +30,17 @@ class PhpdocFullNamespaceFixer extends AbstractFixer
 
                 $line = $doc->getLine($annotation->getStart());
 
-                $classParts = explode(' ', trim($line->getContent()));
+                $classPartsRaw = explode(' ', trim($line->getContent()));
+                $classParts = [];
+
+                foreach ($classPartsRaw as $classPart) {
+                    if (!$classPart) {
+                        continue;
+                    }
+
+                    $classParts[] = $classPart;
+                }
+
                 $class = end($classParts);
 
                 if ($annotation->getTag()->getName() == 'param') {
@@ -38,6 +48,10 @@ class PhpdocFullNamespaceFixer extends AbstractFixer
                     if (isset($classParts[$classIndex])) {
                         $class = $classParts[$classIndex];
                     }
+                }
+
+                if (!$class) {
+                    continue;
                 }
 
                 if ($class[0] == '\\') {

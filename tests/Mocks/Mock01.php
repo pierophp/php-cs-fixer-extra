@@ -23,6 +23,11 @@ class Mock01
     public $mock04;
 
     /**
+     * @var mixed
+     */
+    public $mock05;
+
+    /**
      * @param Mock02 $mock
      * @return MockAlias
      * @throws Mock02

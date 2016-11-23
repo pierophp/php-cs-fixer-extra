@@ -16,25 +16,29 @@ class PhpdocFullNamespaceFixerTest extends \PHPUnit_Framework_TestCase
         $response = $fixer->fix(new \SplFileInfo($filePath), $content);
 
         $tokens = Tokens::fromCode($response);
-        $comments = array_values($tokens->findGivenKind(T_DOC_COMMENT));
+        $comments = $tokens->findGivenKind(T_DOC_COMMENT);
 
         $this->assertEquals('/**
      * @var \Tests\Mocks\Mock02
-     */', $comments[0]->getContent());
+     */', $comments[37]->getContent());
 
         $this->assertEquals('/**
      * @type \Tests\Mocks\Mock03
-     */', $comments[1]->getContent());
+     */', $comments[44]->getContent());
 
         $this->assertEquals('/**
      * @var \Tests\Mocks\Mock02
-     */', $comments[2]->getContent());
+     */', $comments[51]->getContent());
 
         $this->assertEquals('/**
      * @param \Tests\Mocks\Mock02 $mock
      * @return \Tests\Mocks\Mock02
      * @throws \Tests\Mocks\Mock02
-     */', $comments[3]->getContent());
+     */', $comments[65]->getContent());
+
+        $this->assertEquals('/**
+     * @var mixed
+     */', $comments[58]->getContent());
 
     }
 
