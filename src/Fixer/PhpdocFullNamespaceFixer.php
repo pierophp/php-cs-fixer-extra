@@ -38,6 +38,10 @@ class PhpdocFullNamespaceFixer extends AbstractFixer
                         continue;
                     }
 
+                    if ($classPart == '*/') {
+                        continue; 
+                    }
+
                     $classParts[] = $classPart;
                 }
 
