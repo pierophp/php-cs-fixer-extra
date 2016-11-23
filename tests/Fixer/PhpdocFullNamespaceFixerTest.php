@@ -32,6 +32,7 @@ class PhpdocFullNamespaceFixerTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals('/**
      * @param \Tests\Mocks\Mock02 $mock
+     * @param string|\Tests\Mocks\Mock02 $test
      * @return \Tests\Mocks\Mock02
      * @throws \Tests\Mocks\Mock02
      */', $comments[65]->getContent());

@@ -29,6 +29,7 @@ class Mock01
 
     /**
      * @param Mock02 $mock
+     * @param string|\Tests\Mocks\Mock02 $test
      * @return MockAlias
      * @throws Mock02
      */
@@ -39,6 +40,8 @@ class Mock01
 
         return new MockAlias();
     }
+
+
 
 
 }

@@ -39,7 +39,7 @@ class PhpdocFullNamespaceFixer extends AbstractFixer
                     }
 
                     if ($classPart == '*/') {
-                        continue; 
+                        continue;
                     }
 
                     $classParts[] = $classPart;
@@ -58,16 +58,20 @@ class PhpdocFullNamespaceFixer extends AbstractFixer
                     continue;
                 }
 
-                if (substr($class, 0, 1) == '\\') {
-                    continue;
-                }
+                $classList = explode('|', $class);
+                foreach ($classList as $class) {
 
-                $wasParsed = $this->parseLineWithUse($line, $class, $content);
-                if ($wasParsed) {
-                    continue;
-                }
+                    if (substr($class, 0, 1) == '\\') {
+                        continue;
+                    }
 
-                $this->parseLineWithoutUse($line, $class, $content, $file);
+                    $wasParsed = $this->parseLineWithUse($line, $class, $content);
+                    if ($wasParsed) {
+                        continue;
+                    }
+
+                    $this->parseLineWithoutUse($line, $class, $content, $file);
+                }
             }
 
             $token->setContent($doc->getContent());
