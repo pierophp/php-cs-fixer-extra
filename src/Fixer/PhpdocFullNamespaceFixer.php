@@ -67,6 +67,11 @@ class PhpdocFullNamespaceFixer extends AbstractFixer
 
                     $class = str_replace(['[', ']'], '', $class);
 
+                    $wasParsed = $this->parseLineWithUseAndAs($line, $class, $content);
+                    if ($wasParsed) {
+                        continue;
+                    }
+
                     $wasParsed = $this->parseLineWithUse($line, $class, $content);
                     if ($wasParsed) {
                         continue;
@@ -88,9 +93,34 @@ class PhpdocFullNamespaceFixer extends AbstractFixer
      * @param $content
      * @return bool
      */
+    private function parseLineWithUseAndAs(Line $line, $className, $content)
+    {
+        preg_match_all('/use (.*) as ' . preg_quote($className) . ';/', $content, $matches, PREG_OFFSET_CAPTURE);
+        if (!isset($matches[0][0][0])) {
+            return false;
+        }
+
+        $fullClassName = $matches[0][0][0];
+        $fullClassName = str_replace('use ', '', $fullClassName);
+        $fullClassName = str_replace(';', '', $fullClassName);
+
+        $fullClassName = explode(' ', $fullClassName);
+        $fullClassName = current($fullClassName);
+
+        $line->setContent(str_replace($className, '\\' . $fullClassName, $line->getContent()));
+
+        return true;
+    }
+
+    /**
+     * @param Line $line
+     * @param $className
+     * @param $content
+     * @return bool
+     */
     private function parseLineWithUse(Line $line, $className, $content)
     {
-        preg_match_all('/use (.*)\\' . $className . ';/', $content, $matches, PREG_OFFSET_CAPTURE);
+        preg_match_all('/use (.*)' . preg_quote('\\' . $className) . ';/', $content, $matches, PREG_OFFSET_CAPTURE);
         if (!isset($matches[0][0][0])) {
             return false;
         }
