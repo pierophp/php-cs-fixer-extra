@@ -28,12 +28,12 @@ class Mock01
     public $mock05;
 
     /**
-     * @param Mock02 $mock
+     * @param Mock02 $myMock02
      * @param string|\Tests\Mocks\Mock02 $test
      * @return MockAlias|mixed
      * @throws Mock02
      */
-    public function getMyMock(Mock02 $mock, $test)
+    public function getMyMock(Mock02 $myMock02, $test)
     {
         /** @var Mock02 $items */
         $items = [];

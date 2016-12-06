@@ -132,7 +132,7 @@ class PhpdocFullNamespaceFixer extends AbstractFixer
         $fullClassName = explode(' ', $fullClassName);
         $fullClassName = current($fullClassName);
 
-        $line->setContent(str_replace($className, '\\' . $fullClassName, $line->getContent()));
+        $line->setContent(str_replace(' ' . $className, ' \\' . $fullClassName, $line->getContent()));
 
         return true;
     }
